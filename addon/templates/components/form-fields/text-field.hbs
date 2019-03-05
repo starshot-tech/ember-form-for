@@ -40,6 +40,11 @@
       step=step
       tabindex=tabindex
       title=title
+
+      type="text"
+      value=(get object propertyName)
+      onchange=(action '_update' value='target.value')
+      oninput=(action '_update' value='target.value')
   }}
   {{f.errors}}
   {{f.hint}}
