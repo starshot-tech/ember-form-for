@@ -13,8 +13,7 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    // @todo: fix eslint warning
-    const attrs = this.attrs;
+    let { attrs } = this;
 
     // Dynamically pass all attributes to <input> with the exception of blacklisted ones
     this.attributeBindings = [];
