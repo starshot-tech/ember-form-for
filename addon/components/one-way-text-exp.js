@@ -5,16 +5,21 @@ const attributeBlacklist = {
   update: true,
   _sanitizeInput: true,
   serializeValue: true,
-  deserializeValue: true
+  deserializeValue: true,
+  _value: true
 };
 
 export default Component.extend({
   tagName: 'input',
   attributeBindings: undefined,
 
-  value: computed('_value', 'serializeValue', {
+  value: computed('_value', {
     get() {
-      return this.get('serializeValue')(this.get('_value'));
+      if (this.get('serializeValue')) {
+        return this.get('serializeValue')(this.get('_value'));
+      } else {
+        return this.get('_value');
+      }
     },
     set() {
       // @todo??

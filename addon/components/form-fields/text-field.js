@@ -16,14 +16,18 @@ const TextFieldComponent = Component.extend({
 
   actions: {
     _update(value) {
-      this.update(
-        this.get('object'),
-        this.get('propertyName'),
-        this.get('deserializeValue')(
-          value,
-          get(this.get('object'), this.get('propertyName'))
-        )
-      );
+      if (this.get('deserializeValue')) {
+        this.update(
+          this.get('object'),
+          this.get('propertyName'),
+          this.get('deserializeValue')(
+            value,
+            get(this.get('object'), this.get('propertyName'))
+          )
+        );
+      } else {
+        this.update(this.get('object'), this.get('propertyName'), value);
+      }
     }
   }
 });

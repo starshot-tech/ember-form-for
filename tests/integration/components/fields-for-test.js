@@ -4,12 +4,25 @@ import hbs from 'htmlbars-inline-precompile';
 
 const { run } = Ember;
 
-moduleForComponent('fieldset-for', 'Integration | Component | {{fieldset-for}}', {
-  integration: true,
+moduleForComponent(
+  'fieldset-for',
+  'Integration | Component | {{fieldset-for}}',
+  {
+    integration: true,
 
-  setup() {
-    this.set('object', { name: 'Peter' });
+    setup() {
+      this.set('object', { name: 'Peter' });
+    }
   }
+);
+
+test('It does not yield an helper if there is no content', function(assert) {
+  this.render(hbs`
+    {{#fields-for object as |f|}}
+    {{/fields-for}}
+  `);
+
+  assert.equal(this.$('input[type="text"]').length, 0);
 });
 
 test('It yields an helper for rendering form components', function(assert) {
@@ -22,7 +35,7 @@ test('It yields an helper for rendering form components', function(assert) {
   assert.equal(this.$('input[type="text"]').length, 1);
 });
 
-test('It puts the given attribute\'s value in the input', function(assert) {
+test("It puts the given attribute's value in the input", function(assert) {
   this.render(hbs`
     {{#fields-for object as |f|}}
       {{f.text-field "name"}}
