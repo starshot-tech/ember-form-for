@@ -2,7 +2,7 @@ import TextField from './text-field';
 import { toTimeString, toDateString } from '../../utils/date';
 
 export default TextField.extend({
-  control: 'one-way-time',
+  type: 'time',
 
   serializeValue(value) {
     if (value instanceof Date) {

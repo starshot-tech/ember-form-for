@@ -1,11 +1,8 @@
 import TextField from './text-field';
-import {
-  toDatetimeLocalString,
-  formatTimeZoneOffset
-} from '../../utils/date';
+import { toDatetimeLocalString, formatTimeZoneOffset } from '../../utils/date';
 
 export default TextField.extend({
-  control: 'one-way-datetime-local',
+  type: 'datetime-local',
 
   serializeValue(value) {
     if (value instanceof Date) {
@@ -17,7 +14,7 @@ export default TextField.extend({
 
   deserializeValue(value) {
     if (value != null) {
-      let offset = (new Date(value)).getTimezoneOffset();
+      let offset = new Date(value).getTimezoneOffset();
       return new Date(value + formatTimeZoneOffset(offset));
     }
 

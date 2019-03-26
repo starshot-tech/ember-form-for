@@ -1,13 +1,25 @@
 import Component from '@ember/component';
+import { computed } from '@ember/object';
 
 const attributeBlacklist = {
   update: true,
-  _sanitizeInput: true
+  _sanitizeInput: true,
+  serializeValue: true,
+  deserializeValue: true
 };
 
 export default Component.extend({
   tagName: 'input',
   attributeBindings: undefined,
+
+  value: computed('_value', 'serializeValue', {
+    get() {
+      return this.get('serializeValue')(this.get('_value'));
+    },
+    set() {
+      // @todo??
+    }
+  }),
 
   /** based on https://github.com/dockyard/ember-one-way-controls/issues/21 **/
   init() {
@@ -16,7 +28,8 @@ export default Component.extend({
     let { attrs } = this;
 
     // Dynamically pass all attributes to <input> with the exception of blacklisted ones
-    this.attributeBindings = [];
+    //    this.attributeBindings = ['type', 'value'];
+    this.attributeBindings = ['value'];
 
     for (let key in attrs) {
       let value;
@@ -34,5 +47,13 @@ export default Component.extend({
         this.attributeBindings.push(key);
       }
     }
+  },
+
+  serializeValue(value) {
+    return value;
+  },
+
+  deserializeValue(value) {
+    return value;
   }
 });

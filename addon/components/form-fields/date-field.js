@@ -5,7 +5,7 @@ import { toDateString } from '../../utils/date';
 const { isEmpty } = Ember;
 
 export default TextField.extend({
-  control: 'one-way-date',
+  type: 'date',
 
   serializeValue(value) {
     if (value instanceof Date) {

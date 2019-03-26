@@ -2,7 +2,7 @@ import TextField from './text-field';
 import { toMonthString } from '../../utils/date';
 
 export default TextField.extend({
-  control: 'one-way-month',
+  type: 'month',
 
   serializeValue(value) {
     if (value instanceof Date) {

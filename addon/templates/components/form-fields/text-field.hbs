@@ -41,8 +41,11 @@
       tabindex=tabindex
       title=title
 
-      type="text"
-      value=(get object propertyName)
+      type=type
+      _value=(get object propertyName)
+      serializeValue=serializeValue
+      deserializeValue=deserializeValue
+
       onchange=(action '_update' value='target.value')
       oninput=(action '_update' value='target.value')
   }}
