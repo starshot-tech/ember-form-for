@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import config from '../config/environment';
 
-const { merge, set } = Ember;
+const { assign, set } = Ember;
 
 const DEFAULT_CONFIG = {
   buttonClasses: ['form-button'],
@@ -16,7 +16,7 @@ const DEFAULT_CONFIG = {
 };
 
 export function initialize(application) {
-  let formForConfig = merge(DEFAULT_CONFIG, config['ember-form-for']);
+  let formForConfig = assign({}, DEFAULT_CONFIG, config['ember-form-for']);
   let configService = application.lookup('service:ember-form-for/config');
 
   Object.keys(formForConfig).forEach((key) => {
