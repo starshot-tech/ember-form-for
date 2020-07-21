@@ -16,10 +16,23 @@ export default TextField.extend({
   },
 
   deserializeValue(value) {
+    console.log("The Right Package:", value);
+
     if (isEmpty(value)) {
       return null;
     }
 
-    return new Date(value);
+    let date = new Date(value);
+    return convertUTCDateToLocalDate(date);
   }
 });
+
+function convertUTCDateToLocalDate(date) {
+  let newDate = new Date(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+  let offset = date.getTimezoneOffset() / 60;
+  let hours = date.getHours();
+
+  newDate.setHours(hours - offset);
+
+  return newDate;
+}
