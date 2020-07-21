@@ -16,8 +16,6 @@ export default TextField.extend({
   },
 
   deserializeValue(value) {
-    console.log("The Right Package:", value);
-
     if (isEmpty(value)) {
       return null;
     }
